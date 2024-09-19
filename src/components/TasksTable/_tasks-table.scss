@@ -1,0 +1,49 @@
+.tasks-table {
+  display: table-cell;
+  width: 90%;
+  min-height: 60%;
+  height: 550px;
+
+  border-spacing: 2.5rem 2.5rem;
+
+  padding: 0 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background-color: #e6e9f0;
+  box-shadow: 2px 6px 21px -2px rgba(156, 156, 156, 0.75);
+
+  thead th {
+    font-size: 1.5rem;
+  }
+
+  tbody td {
+    text-align: center;
+  }
+}
+
+.button-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  height: 45px;
+  vertical-align: middle;
+
+  button {
+    width: 30px;
+    height: 30px;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      opacity: 80%;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.card-container {
+  width: 100%;
+  min-height: 75%;
+
+  border-radius: 20px;
+  background-color: #979fb9;
+
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}

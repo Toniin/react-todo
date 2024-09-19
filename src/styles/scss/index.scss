@@ -1,0 +1,41 @@
+@use "card-container";
+@use "tasks-table";
+@use "footer";
+@use "../../components/ActionsBar/actions-bar";
+@use "not-found";
+@use "../../components/AddTaskForm/add-task-form";
+@use "../../components/EditTaskForm/edit-task-form";
+
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+
+  background: rgb(42, 56, 101);
+  background: linear-gradient(
+    0deg,
+    rgba(42, 56, 101, 1) 0%,
+    rgba(68, 93, 172, 1) 35%,
+    rgba(89, 123, 232, 1) 100%
+  );
+}
+
+.app-container {
+  width: 60%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto;
+
+  position: relative;
+}

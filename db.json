@@ -1,0 +1,44 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "name": "Learn React",
+      "description": "Managing State, Escape Hatches, Effects",
+      "category": "Programming",
+      "date": "",
+      "time": "",
+      "priority": "High",
+      "fulfillment": "30"
+    },
+    {
+      "id": "2",
+      "name": "Shopping",
+      "description": "Potatoes, Onions, Eggs, Olive Oil",
+      "category": "Household",
+      "date": "26.02.2023",
+      "time": "",
+      "priority": "High",
+      "fulfillment": "0"
+    },
+    {
+      "name": "Buy the tickets",
+      "description": "at cheaptickets.com/shanghai",
+      "category": "Travel",
+      "date": "12.01.2023",
+      "time": "12:00",
+      "priority": "Medium",
+      "fulfillment": "100",
+      "id": "3"
+    },
+    {
+      "name": "task",
+      "description": "desc",
+      "category": "cat",
+      "date": "",
+      "time": "",
+      "priority": "High",
+      "fulfillment": "100",
+      "id": "m17t9g97suys672b94"
+    }
+  ]
+}
