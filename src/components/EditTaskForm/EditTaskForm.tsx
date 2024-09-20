@@ -3,41 +3,30 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useParams} from 'react-router-dom';
 import { toast } from "sonner";
+import { useEditTaskReducer } from "../../store/editTaskReducer.ts";
 
 const EditTaskForm = () => {
-    const {taskId} = useParams();
-
     const navigate = useNavigate();
-    const [id, setId] = useState("")
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [category, setCategory] = useState("")
-    const [date, setDate] = useState("")
-    const [time, setTime] = useState("")
-    const [priority, setPriority] = useState("")
-    const [fulfillment, setFulfillment] = useState("0")
+    const {taskId} = useParams();
+    const { state, dispatch } = useEditTaskReducer()
 
     const [nameError, setNameError] = useState("")
     const [descriptionError, setDescriptionError] = useState("")
     const [categoryError, setCategoryError] = useState("")
     const [priorityError, setPriorityError] = useState("")
 
+    const {id, name, description, category, date, time, priority, fulfillment} = state.task
+
     useEffect(() => {
         fetch(`http://localhost:3000/tasks/${taskId}`)
             .then(response => response.json())
             .then(task => {
-                setId(task.id)
-                setName(task.name)
-                setDescription(task.description)
-                setCategory(task.category)
-                setDate(task.date)
-                setTime(task.time)
-                setPriority(task.priority)
-                setFulfillment(task.fulfillment)
+                dispatch({type: "INIT_TASK_VALUES", payload: task})
             })
             .catch((error) => {
                 toast.error(error.message);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [taskId]);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -109,7 +98,7 @@ const EditTaskForm = () => {
                             id="task-name"
                             placeholder="name for the task you’re going to do"
                             defaultValue={name}
-                            onChange={e => setName(e.target.value)}
+                            onChange={e => dispatch({type: "SET_NAME", payload: e.target.value})}
                         />
                         {nameError &&
                             <p className="error-message">{nameError}</p>
@@ -123,7 +112,7 @@ const EditTaskForm = () => {
                             id="task-description"
                             placeholder="a short description of the task - can be omitted"
                             defaultValue={description}
-                            onChange={e => setDescription(e.target.value)}
+                            onChange={e => dispatch({type: "SET_DESCRIPTION", payload: e.target.value})}
                         />
                         {descriptionError &&
                             <p className="error-message">{descriptionError}</p>
@@ -137,7 +126,7 @@ const EditTaskForm = () => {
                             id="task-category"
                             placeholder="e.g. household, school, work"
                             defaultValue={category}
-                            onChange={e => setCategory(e.target.value)}
+                            onChange={e => dispatch({type: "SET_CATEGORY", payload: e.target.value})}
                         />
                         {categoryError &&
                             <p className="error-message">{categoryError}</p>
@@ -151,7 +140,7 @@ const EditTaskForm = () => {
                             id="task-date"
                             placeholder="dd/mm/yyyy  - can be omitted"
                             defaultValue={date}
-                            onChange={e => setDate(e.target.value)}
+                            onChange={e => dispatch({type: "SET_DATE", payload: e.target.value})}
                         />
                     </div>
                     <div className="label-input">
@@ -162,7 +151,7 @@ const EditTaskForm = () => {
                             id="task-time"
                             placeholder="hh:mm - can be omitted"
                             defaultValue={time}
-                            onChange={e => setTime(e.target.value)}
+                            onChange={e => dispatch({type: "SET_TIME", payload: e.target.value})}
                         />
                     </div>
                 </div>
@@ -170,7 +159,7 @@ const EditTaskForm = () => {
                     <div className="col-2">
                         <div className="label-input">
                             <label htmlFor="task-priority">Priority:</label>
-                            <select id="task-priority" name="task-priority" value={priority} onChange={e => setPriority(e.target.value)}>
+                            <select id="task-priority" name="task-priority" value={priority} onChange={e => dispatch({type: "SET_PRIORITY", payload: e.target.value})}>
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>
@@ -189,7 +178,7 @@ const EditTaskForm = () => {
                                 min="0"
                                 max="100"
                                 value={fulfillment}
-                                onChange={e => setFulfillment(e.target.value)}
+                                onChange={e => dispatch({type: "SET_FULFILLMENT", payload: e.target.value})}
                             />
                         </div>
                     </div>

@@ -3,16 +3,13 @@ import {useNavigate} from "react-router-dom";
 import {uid} from "../../utils/uid.ts";
 import {useState} from "react";
 import { toast } from 'sonner'
+import { useAddTaskReducer } from "../../store/addTaskReducer.ts";
 
 const AddTaskForm = () => {
     const navigate = useNavigate();
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [category, setCategory] = useState("")
-    const [date, setDate] = useState("")
-    const [time, setTime] = useState("")
-    const [priority, setPriority] = useState("")
-    const [fulfillment, setFulfillment] = useState("0")
+    const { state, dispatch } = useAddTaskReducer()
+
+    const {name, description, category, date, time, priority, fulfillment} = state.task
 
     const [nameError, setNameError] = useState("")
     const [descriptionError, setDescriptionError] = useState("")
@@ -88,7 +85,7 @@ const AddTaskForm = () => {
                             name="task-name"
                             id="task-name"
                             placeholder="name for the task you’re going to do"
-                            onChange={e => setName(e.target.value)}
+                            onChange={e => dispatch({type: "SET_NAME", payload: e.target.value})}
                         />
                         {nameError &&
                             <p className="error-message">{nameError}</p>
@@ -101,7 +98,7 @@ const AddTaskForm = () => {
                             name="task-description"
                             id="task-description"
                             placeholder="a short description of the task - can be omitted"
-                            onChange={e => setDescription(e.target.value)}
+                            onChange={e => dispatch({type: "SET_DESCRIPTION", payload: e.target.value})}
                         />
                         {descriptionError &&
                             <p className="error-message">{descriptionError}</p>
@@ -114,7 +111,7 @@ const AddTaskForm = () => {
                             name="task-category"
                             id="task-category"
                             placeholder="e.g. household, school, work"
-                            onChange={e => setCategory(e.target.value)}
+                            onChange={e => dispatch({type: "SET_CATEGORY", payload: e.target.value})}
                         />
                         {categoryError &&
                             <p className="error-message">{categoryError}</p>
@@ -127,7 +124,7 @@ const AddTaskForm = () => {
                             name="task-date"
                             id="task-date"
                             placeholder="dd/mm/yyyy  - can be omitted"
-                            onChange={e => setDate(e.target.value)}
+                            onChange={e => dispatch({type: "SET_DATE", payload: e.target.value})}
                         />
                     </div>
                     <div className="label-input">
@@ -137,7 +134,7 @@ const AddTaskForm = () => {
                             name="task-time"
                             id="task-time"
                             placeholder="hh:mm - can be omitted"
-                            onChange={e => setTime(e.target.value)}
+                            onChange={e => dispatch({type: "SET_TIME", payload: e.target.value})}
                         />
                     </div>
                 </div>
@@ -146,7 +143,7 @@ const AddTaskForm = () => {
                         <div className="label-input">
                             <label htmlFor="task-priority">Priority:</label>
                             <select id="task-priority" name="task-priority" size={3}
-                                    onChange={e => setPriority(e.target.value)}>
+                                    onChange={e => dispatch({type: "SET_PRIORITY", payload: e.target.value})}>
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>
@@ -165,7 +162,7 @@ const AddTaskForm = () => {
                                 value={fulfillment}
                                 min="0"
                                 max="100"
-                                onChange={e => setFulfillment(e.target.value)}
+                                onChange={e => dispatch({type: "SET_FULFILLMENT", payload: e.target.value})}
                             />
                         </div>
                     </div>

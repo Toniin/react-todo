@@ -42,8 +42,6 @@ export function tasksReducer(state: { tasks: taskModel[] }, action: {type: strin
         default:
             return state;
     }
-
-    throw Error("Unknown action");
 }
 
 export const useTasksReducer = () => {

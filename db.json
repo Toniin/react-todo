@@ -29,16 +29,6 @@
       "priority": "Medium",
       "fulfillment": "100",
       "id": "3"
-    },
-    {
-      "name": "task",
-      "description": "desc",
-      "category": "cat",
-      "date": "",
-      "time": "",
-      "priority": "High",
-      "fulfillment": "100",
-      "id": "m17t9g97suys672b94"
     }
   ]
 }
